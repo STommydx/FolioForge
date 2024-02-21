@@ -1,0 +1,80 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "FolioForge API",
+        "title": "FolioForge API",
+        "contact": {
+            "name": "Thomas Li",
+            "url": "http://about.thomasli.work",
+            "email": "dev@stdx.space"
+        },
+        "version": "1.0"
+    },
+    "paths": {
+        "/healthz": {
+            "get": {
+                "description": "Health Checking for API services",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Health Checking",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/healthz.HealthzResult"
+                        }
+                    },
+                    "503": {
+                        "description": "Service Unavailable",
+                        "schema": {
+                            "$ref": "#/definitions/healthz.HealthzResult"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "healthz.HealthzResult": {
+            "type": "object",
+            "properties": {
+                "details": {
+                    "$ref": "#/definitions/healthz.HealthzResultDetails"
+                },
+                "status": {
+                    "type": "string",
+                    "enum": [
+                        "ok",
+                        "error"
+                    ],
+                    "example": "ok"
+                },
+                "uptime": {
+                    "type": "string"
+                }
+            }
+        },
+        "healthz.HealthzResultDetail": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string",
+                    "enum": [
+                        "ok",
+                        "error"
+                    ],
+                    "example": "ok"
+                }
+            }
+        },
+        "healthz.HealthzResultDetails": {
+            "type": "object",
+            "properties": {
+                "db": {
+                    "$ref": "#/definitions/healthz.HealthzResultDetail"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,53 @@
+definitions:
+  healthz.HealthzResult:
+    properties:
+      details:
+        $ref: '#/definitions/healthz.HealthzResultDetails'
+      status:
+        enum:
+        - ok
+        - error
+        example: ok
+        type: string
+      uptime:
+        type: string
+    type: object
+  healthz.HealthzResultDetail:
+    properties:
+      status:
+        enum:
+        - ok
+        - error
+        example: ok
+        type: string
+    type: object
+  healthz.HealthzResultDetails:
+    properties:
+      db:
+        $ref: '#/definitions/healthz.HealthzResultDetail'
+    type: object
+info:
+  contact:
+    email: dev@stdx.space
+    name: Thomas Li
+    url: http://about.thomasli.work
+  description: FolioForge API
+  title: FolioForge API
+  version: "1.0"
+paths:
+  /healthz:
+    get:
+      description: Health Checking for API services
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/healthz.HealthzResult'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/healthz.HealthzResult'
+      summary: Health Checking
+swagger: "2.0"

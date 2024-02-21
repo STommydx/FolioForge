@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  postgresql:
+    image: postgres:15
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: folioforge
+      POSTGRES_PASSWORD: folioforge
+      POSTGRES_DB: folioforge
