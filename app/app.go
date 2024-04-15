@@ -6,6 +6,7 @@ import (
 	"github.com/STommydx/FolioForge/healthz"
 	"github.com/STommydx/FolioForge/http"
 	"github.com/STommydx/FolioForge/logger"
+	"github.com/STommydx/FolioForge/profile"
 	"go.uber.org/fx"
 )
 
@@ -16,6 +17,7 @@ func New() *fx.App {
 		http.Module,
 		healthz.Module,
 		db.Module,
+		profile.Module,
 	)
 	return app
 }
